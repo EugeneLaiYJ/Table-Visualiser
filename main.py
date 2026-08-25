@@ -19,6 +19,7 @@ while True:
 
     request = client_socket.recv(1500).decode()
     print(request)
+
     headers = request.split('\n')
     first_header_components = headers[0].split()
 
@@ -28,12 +29,14 @@ while True:
     if http_method == 'GET':
         if path == '/':
             fin = open('index.html')
+        elif path =='/table':
+            fin = open('table.html')
         else:
             pass
-
+        
         content = fin.read()
-        fin.close()
         response = 'HTTP/1.1 200 OK\n\n' + content
+        fin.close
 
     else:
         response = 'HTTP/1.1 405 Method Not Allowed\n\nAllow: GET'
